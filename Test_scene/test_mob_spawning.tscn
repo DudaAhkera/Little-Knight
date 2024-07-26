@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjajxqt0830qb"]
+
+[ext_resource type="PackedScene" uid="uid://biabjspkd2thm" path="res://player/player.tscn" id="1_5pp8k"]
+[ext_resource type="PackedScene" uid="uid://dtw3441levlji" path="res://systems/mob_spawner.tscn" id="2_yjb3f"]
+
+[sub_resource type="Curve2D" id="Curve2D_p6qme"]
+
+[node name="TestMobSpawning" type="Node2D"]
+position = Vector2(-385, -263)
+
+[node name="player" parent="." instance=ExtResource("1_5pp8k")]
+position = Vector2(505, 406)
+
+[node name="MobSpawner" parent="." instance=ExtResource("2_yjb3f")]
+position = Vector2(860, 617)
+
+[node name="Path2D2" type="Path2D" parent="MobSpawner"]
+curve = SubResource("Curve2D_p6qme")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="MobSpawner/Path2D2"]
+unique_name_in_owner = true
+position = Vector2(-352, -213)
+
+[node name="_Timer_193191" type="Timer" parent="MobSpawner/Path2D2/PathFollow2D"]
+wait_time = 0.2
+one_shot = true
